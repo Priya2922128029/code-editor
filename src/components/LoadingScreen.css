@@ -1,0 +1,190 @@
+/* components/LoadingScreen.css */
+.loading-screen {
+  height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-screen::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.code-editor-loader {
+  width: 400px;
+  background: var(--editor-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--accent-glow);
+  margin: 0 auto 40px;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(5deg);
+}
+
+.loader-header {
+  background: linear-gradient(90deg, #2d3748, #4a5568);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.loader-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.dot.red { background: #ff6b6b; animation-delay: 0s; }
+.dot.yellow { background: #ffd93d; animation-delay: 0.2s; }
+.dot.green { background: #6bcf7f; animation-delay: 0.4s; }
+
+.loader-content {
+  padding: 30px;
+}
+
+.code-line {
+  height: 8px;
+  background: #4a5568;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.code-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.animated.delay-1 { animation-delay: 0.1s; }
+.animated.delay-2 { animation-delay: 0.2s; }
+.animated.delay-3 { animation-delay: 0.3s; }
+
+.loading-text h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-family: 'Fira Code', monospace;
+}
+
+.typing-animation {
+  overflow: hidden;
+  border-right: 3px solid var(--accent-color);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent-color); }
+}
+
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loading-bar {
+  width: 300px;
+  height: 4px;
+  background: #2d3748;
+  border-radius: 2px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.loading-progress {
+  width: 30%;
+  height: 100%;
+  background: var(--primary-gradient);
+  border-radius: 2px;
+  animation: loading 2s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(300%); }
+}
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  filter: blur(20px);
+  opacity: 0.3;
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  right: 15%;
+  background: var(--secondary-gradient);
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
